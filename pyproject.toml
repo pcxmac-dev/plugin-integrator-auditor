@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plugin-integrator-auditor"
+version = "0.1.0"  # the plugin's own release (CHANGELOG.md); the app shows it on the Plugins view
+description = "The auditor for Liminal: the plugin that holds how what is fetched is audited (the copy audit of the fetch cache, the sweep of every symbol)."
+readme = "README.md"
+requires-python = ">=3.10"
+# the library it plugs into (the auditors and their plugin kind: liminal_libs.auditing, plugin API 2.4, 1.64.0)
+dependencies = ["liminal-libs>=1.64.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.entry-points."liminal.providers"]
+auditor = "plugin_integrator_auditor"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
